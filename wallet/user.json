@@ -1,0 +1,36 @@
+{
+  "user": [
+    {
+      "id": "sss",
+      "name": "sanjay",
+      "phone": "8854661",
+      "email": "sss",
+      "password": "aaa",
+      "wallet": 40
+    },
+    {
+      "id": "shiv",
+      "name": "shivu",
+      "phone": "8861",
+      "email": "shiv",
+      "password": "1234",
+      "wallet": 300
+    },
+    {
+      "id": "pru",
+      "name": "prudhvi",
+      "phone": "123",
+      "email": "pru",
+      "password": "123",
+      "wallet": 300
+    },
+    {
+      "id": "nimi",
+      "name": "nimish",
+      "phone": "6565",
+      "email": "nimi",
+      "password": "nimi",
+      "wallet": 400
+    }
+  ]
+}

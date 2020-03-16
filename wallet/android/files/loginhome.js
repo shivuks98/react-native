@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler'
-import React from 'react';
+import * as React from 'react';
+// import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,26 +13,46 @@ import {
 import {NavigationContainer}from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-// import home from './android/files/home.js'
+import profile from './profile'
+import wallet from './wallet'
 
 const tab=createBottomTabNavigator();
 // const stack=createStackNavigator();
+
+
+// export default  loginhome =(props)=>{
+// console.warn(props.route.params.name)
+// return(
+//     <Text>hii</Text>
+// )
+// }
+
 export default class loginhome extends React.Component{
     constructor(props){
         super(props)
-        
-    }
 
+        this.state={
+            name:this.props.route.params.name
+            // name:this.props.navigation.getParam('name')
+        }
+ 
+    }
     
   render(){
+//    console.warn(this.props.route.params)
     return(
+    // <Text>hii</Text>
+        
+    // 
         <tab.Navigator style={styles.tabbar}>
-            <tab.Screen name='Profile' component={profile}/>
-            <tab.Screen name='Home' component={homescreen} style={styles.nav}/>
+            <tab.Screen name='Home' component={homescreen} style={styles.nav} initialParams={this.state}/>
+            <tab.Screen name='Wallet' component={wallet} initialParams={this.state} />
+            <tab.Screen name='Payment History' component={payment} initialParams={this.state} />
+            <tab.Screen name='Profile' component={profile} initialParams={this.state} />
+
+
             
         </tab.Navigator>
-        
-
     )
 
   }
@@ -45,41 +66,34 @@ function homescreen(){
     </View>
     )
 }
-function profiles(){
-    // const {navigation}=this.props;
-    // const username=this.navigation.getParam('username');
-    // const username=this.getParam('username')
-    // const password=navigation.getParam('password');
+
+function payment(){
     return(
-        <View>
-                <Text>hii</Text>
-                {/* <Text style={styles.textStyle}>User Name: {JSON.stringify(username)}</Text>  
-                <Text style={styles.textStyle}>password: {JSON.stringify(password)}</Text>   */}
-            </View>
-        
-
-
-
-    //     <Text style={styles.tabss}>
-    //     this is profile screen
-    // </Text>
-    // this.props.navigation.navigate('profiles')
-    //    this.props.navigation.navigate('profile')
-    
+    <View style={styles.tabs}>
+        <Text style={styles.tabss}>
+            this is paymet history screen
+        </Text>
+    </View>
     )
 }
+
+
 const styles= StyleSheet.create({
     tabs:{
-        alignItems:'center'
+        alignItems:'center',
+        flex:1,
+        backgroundColor:'#64b5f6'
     },
     nav:{
-        alignItems:'center'
+        alignItems:'center',
+        backgroundColor: '#64b5f6',
+        fontSize:20
         
     },
     tabbar:{
         alignContent:'center',
         paddingBottom:10,
         backgroundColor:'blue',
-        color:'red'
+        color:'red',
     }
 });

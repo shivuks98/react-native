@@ -6,25 +6,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 import lhome from './loginhome';
 import axios from 'axios';
 const url="http://10.0.2.2:3000/user";
-export default class profile extends React.Component{
+export default class wallet extends React.Component{
     constructor(props){
         super(props)
         this.state={
             id:this.props.route.params.name,
-            name:null,
-            email:null,
-            phone:null,
-            password:null
+            wallet
         }
     }
     componentDidMount(){
         axios.get(url+'/'+this.state.id)
         .then((response)=>{
             this.setState({
-                name:response.data.name,
-                email:response.data.email,
-                phone:response.data.phone,
-                password:response.data.password
+                wallet:response.data.wallet
             })
             .catch((e)=>{
                 console.log(e)
@@ -38,19 +32,22 @@ export default class profile extends React.Component{
     // console.warn(this.state)
        return(
       <View style={styles.container}> 
-            <View style={styles.name}>
-                <Text  style={styles.text}>Name : {this.state.name}</Text>
-            </View>
-            <View  style={styles.name}>
-                <Text style={styles.text}>E-mail : {this.state.email}</Text>
-            </View>
-            <View style={styles.name}>
-                <Text style={styles.text}>Phone Number : {this.state.phone}</Text>  
-            </View>
-            <View style={styles.name}>
-                <Text style={styles.text}>Password : {this.state.password}</Text>
-            </View>
+            <View>
+                <Text style={styles.name}>Balance </Text>
+                <Text style={styles.text}>{this.state.wallet}</Text>
+           </View>
+           <View >
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('addMoney',{name:this.state.id})} style={styles.addbtn}>
+                <Text style={styles.text}>Add Money</Text>
+                </TouchableOpacity>
+           </View>
        </View>   
+       
+       )
+   }
+   addMoney=()=>{
+       return(
+           <View>hii</View>
        )
    }
 }
@@ -58,17 +55,28 @@ const styles=StyleSheet.create({
     container:{
         backgroundColor: '#64b5f6',
     flex:1,
-    // alignItems:'center'
+    alignItems:'center'
     // paddingLeft:20
 },
     name:{
         marginTop:1,
         padding:20,
-        borderBottomColor:"#ffff",
-        borderBottomWidth:1
+        fontSize:25,
+        fontWeight:'bold'
+        // borderBottomColor:"#ffff",
+        // borderBottomWidth:1
     },
     text:{
         fontSize:17,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        alignItems:'center'
+    },
+    addbtn:{
+        margin:30,
+        
+        backgroundColor:"#1e88e5",
+        padding:10,
+        borderWidth:1
+        
     }
 })
